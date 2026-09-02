@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:bt="urn:gugik:specyfikacje:gmlas:modelPodstawowy:1.0" xmlns:mz="urn:gugik:specyfikacje:gmlas:mapaZasadnicza:1.0" targetNamespace="urn:gugik:specyfikacje:gmlas:modelPodstawowy:1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/citation.xsd"/>
+	<import namespace="urn:gugik:specyfikacje:gmlas:mapaZasadnicza:1.0" schemaLocation="MZ_MapaZasadnicza.xsd"/>
+	<!--======================================-->
+	<element name="BT_ObiektPrzestrzenny" type="bt:BT_ObiektPrzestrzennyType" abstract="true" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="BT_ObiektPrzestrzennyType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="zbior" type="bt:BT_ZbiorDanychPrzestrzennychPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>bt:obiekt</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BT_ObiektPrzestrzennyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bt:BT_ObiektPrzestrzenny"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<element name="BT_ReferencyjnyObiektPrzestrzenny" type="bt:BT_ReferencyjnyObiektPrzestrzennyType" abstract="true" substitutionGroup="bt:BT_ObiektPrzestrzenny"/>
+	<complexType name="BT_ReferencyjnyObiektPrzestrzennyType" abstract="true">
+		<complexContent>
+			<extension base="bt:BT_ObiektPrzestrzennyType">
+				<sequence>
+					<element name="idIIP" type="bt:BT_IdentyfikatorPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BT_ReferencyjnyObiektPrzestrzennyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bt:BT_ReferencyjnyObiektPrzestrzenny"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<element name="BT_ZbiorDanychPrzestrzennych" type="bt:BT_ZbiorDanychPrzestrzennychType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="BT_ZbiorDanychPrzestrzennychType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="idIIP" type="bt:BT_IdentyfikatorPropertyType"/>
+					<element name="metadane" type="gmd:MD_Metadata_PropertyType">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>gmd:MD_Metadata</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="obiekt" type="bt:BT_ObiektPrzestrzennyPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>bt:zbior</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BT_ZbiorDanychPrzestrzennychPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bt:BT_ZbiorDanychPrzestrzennych"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<element name="BT_Identyfikator" type="bt:BT_IdentyfikatorType" substitutionGroup="gml:AbstractObject"/>
+	<complexType name="BT_IdentyfikatorType">
+		<sequence>
+			<element name="lokalnyId" type="string"/>
+			<element name="przestrzenNazw" type="string"/>
+			<element name="wersjaId" type="string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="BT_IdentyfikatorPropertyType">
+		<sequence>
+			<element ref="bt:BT_Identyfikator"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<element name="BT_Zbior" type="bt:BT_ZbiorType" substitutionGroup="gml:AbstractObject"/>
+	<complexType name="BT_ZbiorType">
+		<sequence>
+			<element name="dataAktualizacji" type="date" minOccurs="0"/>
+			<element name="dataUtworzenia" type="date"/>
+			<element name="opis" type="string" minOccurs="0"/>
+			<element name="postacElektroniczna" type="boolean"/>
+			<element name="rozszerzenie" type="string" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="autor" type="gmd:CI_ResponsibleParty_PropertyType" maxOccurs="unbounded"/>
+			<element name="tytul" type="string"/>
+			<element name="zasobSieciowy" type="gmd:CI_OnlineResource_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="rodzajZawartosci" type="bt:BT_RodzajElementuType" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="BT_ZbiorPropertyType">
+		<sequence>
+			<element ref="bt:BT_Zbior"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<element name="BT_CyklZyciaInfo" type="bt:BT_CyklZyciaInfoType" substitutionGroup="gml:AbstractObject"/>
+	<complexType name="BT_CyklZyciaInfoType">
+		<sequence>
+			<element name="poczatekWersjiObiektu" type="dateTime"/>
+			<element name="koniecWersjiObiektu" type="dateTime" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="BT_CyklZyciaInfoPropertyType">
+		<sequence>
+			<element ref="bt:BT_CyklZyciaInfo"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<element name="BT_OperatTech" type="bt:BT_OperatTechType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="BT_OperatTechType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="dataUtworzenia" type="date"/>
+					<element name="idOpracowania" type="string" maxOccurs="unbounded"/>
+					<element name="metadane" type="gmd:MD_Metadata_PropertyType"/>
+					<element name="odniesienieDoBazy" type="bt:BT_BazaEnumerationType" maxOccurs="unbounded"/>
+					<element name="wykonawca" type="gmd:CI_ResponsibleParty_PropertyType"/>
+					<element name="zasiegRoboty" type="gml:LinearRingPropertyType"/>
+					<element name="zasobSieciowy" type="gmd:CI_OnlineResource_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="zawartosc" type="bt:BT_ZbiorPropertyType" maxOccurs="unbounded"/>
+					<element name="idZgloszenia" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="zleceniodawca" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gmd:CI_ResponsibleParty_PropertyType"/>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BT_OperatTechPropertyType">
+		<sequence>
+			<element ref="bt:BT_OperatTech"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<simpleType name="BT_BazaEnumerationType">
+		<annotation/>
+		<restriction base="string">
+			<enumeration value="EGiB"/>
+			<enumeration value="GESUT"/>
+			<enumeration value="BDNMT"/>
+			<enumeration value="BDOrto"/>
+			<enumeration value="BDOT10k"/>
+			<enumeration value="BDOT500"/>
+			<enumeration value="BDSOG"/>
+			<enumeration value="BDZLiS"/>
+			<enumeration value="EMUiA"/>
+			<enumeration value="PRG"/>
+			<enumeration value="PRNG"/>
+			<enumeration value="PRPOG"/>
+			<enumeration value="RCiWN"/>
+			<enumeration value="BDOO"/>
+		</restriction>
+	</simpleType>
+	<!--======================================-->
+	<simpleType name="BT_RodzajElementuType">
+		<union memberTypes="bt:BT_RodzajElementuEnumerationType bt:BT_RodzajElementuOtherType"/>
+	</simpleType>
+	<simpleType name="BT_RodzajElementuEnumerationType">
+		<restriction base="string">
+			<enumeration value="dowodyIKopieDoreczen">
+				<annotation/>
+			</enumeration>
+			<enumeration value="dziennikPomiaru">
+				<annotation/>
+			</enumeration>
+			<enumeration value="inny">
+				<annotation/>
+			</enumeration>
+			<enumeration value="protokol">
+				<annotation/>
+			</enumeration>
+			<enumeration value="roboczaBazaDanych">
+				<annotation/>
+			</enumeration>
+			<enumeration value="sprawozdanieTechniczne">
+				<annotation/>
+			</enumeration>
+			<enumeration value="szkicPomiarowy">
+				<annotation/>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="BT_RodzajElementuOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<!--======================================-->
+	<simpleType name="BT_UkladWysType">
+		<union memberTypes="bt:BT_UkladWysEnumerationType bt:BT_UkladWysOtherType"/>
+	</simpleType>
+	<simpleType name="BT_UkladWysEnumerationType">
+		<restriction base="string">
+			<enumeration value="Kronsztadt60"/>
+			<enumeration value="Kronsztadt86"/>
+			<enumeration value="Kronsztadt2006"/>
+			<enumeration value="Amsterdam55"/>
+			<enumeration value="Amsterdam2000"/>
+			<enumeration value="EUREF89"/>
+			<enumeration value="ETRF2000"/>
+			<enumeration value="ETRF2008"/>
+			<enumeration value="Pulkowo42"/>
+			<enumeration value="EVRS2007"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="BT_UkladWysOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<!--======================================-->
+	<simpleType name="BT_UkladGeodType">
+		<union memberTypes="bt:BT_UkladGeodEnumerationType bt:BT_UkladGeodOtherType"/>
+	</simpleType>
+	<simpleType name="BT_UkladGeodEnumerationType">
+		<restriction base="string">
+			<enumeration value="EUREF89"/>
+			<enumeration value="ETRF2000"/>
+			<enumeration value="ETRF2008"/>
+			<enumeration value="Pulkowo42"/>
+			<enumeration value="PUWP1992"/>
+			<enumeration value="PUWP2000"/>
+			<enumeration value="PUWP1965"/>
+			<enumeration value="PUWP1942"/>
+			<enumeration value="PUWPBG"/>
+			<enumeration value="UTM"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="BT_UkladGeodOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<!--======================================-->
+	<element name="BT_ReferencjaDoObiektu" type="bt:BT_ReferencjaDoObiektuType" substitutionGroup="gml:AbstractObject"/>
+	<complexType name="BT_ReferencjaDoObiektuType">
+		<choice>
+			<element name="idIIP" type="bt:BT_IdentyfikatorPropertyType"/>
+			<element name="obiekt" type="bt:BT_ReferencyjnyObiektPrzestrzennyPropertyType">
+				<annotation>
+					<appinfo>
+						<gml:targetElement>bt:BT_ReferencyjnyObiektPrzestrzenny</gml:targetElement>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="obiektKarto" type="bt:KR_ObiektKartoPropertyType" maxOccurs="unbounded">
+				<annotation>
+					<appinfo>
+						<gml:reversePropertyName>bt:obiektPrzedstawiany</gml:reversePropertyName>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="pktWysKarto" type="bt:KR_PktWysPropertyType" minOccurs="0">
+				<annotation>
+					<appinfo>
+						<gml:reversePropertyName>bt:obiektPrzedstawiany2</gml:reversePropertyName>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="liniaWysKarto" type="bt:KR_LiniaWysPropertyType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<appinfo>
+						<gml:reversePropertyName>bt:obiektyReferencyjne</gml:reversePropertyName>
+					</appinfo>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="BT_ReferencjaDoObiektuPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bt:BT_ReferencjaDoObiektu"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="BT_ReferencjaDoObiektuUnionSemantics">
+		<restriction base="string">
+			<enumeration value="identyfikatorIIP"/>
+		</restriction>
+	</simpleType>
+	<!--======================================-->
+	<element name="BT_Dokument" type="bt:BT_DokumentType" substitutionGroup="gml:AbstractObject"/>
+	<complexType name="BT_DokumentType">
+		<sequence>
+			<element name="opis" type="string" minOccurs="0"/>
+			<element name="rodzaj" type="bt:DC_RodzajDokumentuType"/>
+			<element name="status" type="bt:DC_StatusDokumentuKodType"/>
+			<element name="sygnatura" type="string" minOccurs="0"/>
+			<element name="tytul" type="string"/>
+			<element name="wydawca" type="string"/>
+			<element name="zasobSieciowy" type="gmd:CI_OnlineResource_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="data" nillable="true">
+				<complexType>
+					<simpleContent>
+						<extension base="date">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="BT_DokumentPropertyType">
+		<sequence>
+			<element ref="bt:BT_Dokument"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<simpleType name="DC_RodzajDokumentuType">
+		<annotation/>
+		<union memberTypes="bt:DC_RodzajDokumentuEnumerationType bt:DC_RodzajDokumentuOtherType"/>
+	</simpleType>
+	<simpleType name="DC_RodzajDokumentuEnumerationType">
+		<restriction base="string">
+			<enumeration value="decyzja"/>
+			<enumeration value="inny"/>
+			<enumeration value="orzeczenie"/>
+			<enumeration value="rozporzadzenie"/>
+			<enumeration value="protokol"/>
+			<enumeration value="uchwala"/>
+			<enumeration value="umowa"/>
+			<enumeration value="ustawa"/>
+			<enumeration value="wyciagZKW"/>
+			<enumeration value="zarzadzenie"/>
+			<enumeration value="zawiadomienie"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="DC_RodzajDokumentuOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<!--======================================-->
+	<simpleType name="DC_StatusDokumentuKodType">
+		<restriction base="string">
+			<enumeration value="obowiazujacy"/>
+			<enumeration value="nieobowiazujacy"/>
+		</restriction>
+	</simpleType>
+	<!--======================================-->
+	<element name="KR_ObiektKarto" type="bt:KR_ObiektKartoType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="KR_ObiektKartoType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="mianownikSkali" type="integer"/>
+					<element name="kodKarto" type="string" minOccurs="0"/>
+					<element name="geometriaKarto" type="gml:GeometricPrimitivePropertyType" maxOccurs="unbounded"/>
+					<element name="uwagi" type="string" minOccurs="0"/>
+					<element name="etykieta" type="bt:KR_EtykietaType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="parametr" type="double" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="warstwa" type="string" minOccurs="0"/>
+					<element name="obiektPrzedstawiany1" type="bt:BT_ReferencjaDoObiektuPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>bt:obiektKarto</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="mz_ogolnyObiekt" type="mz:MZ_OgolnyObiektPropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="KR_ObiektKartoPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bt:KR_ObiektKarto"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<element name="KR_PktWys" type="bt:KR_PktWysType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="KR_PktWysType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="polozenie" type="gml:DirectPositionType"/>
+					<element name="etykieta" type="bt:KR_EtykietaType"/>
+					<element name="rodzajPkt" type="bt:KR_RodzajPktuType"/>
+					<element name="obiektPrzedstawiany2" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>bt:pktWysKarto</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="KR_PktWysPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bt:KR_PktWys"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<element name="KR_LiniaWys" type="bt:KR_LiniaWysType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="KR_LiniaWysType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometriaKarto" type="gml:GeometricPrimitivePropertyType" maxOccurs="unbounded"/>
+					<element name="etykieta" type="bt:KR_EtykietaType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="rodzajLinii" type="bt:KR_RodzajLiniiType"/>
+					<element name="obiektyReferencyjne" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>liniaWysKarto</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="KR_LiniaWysPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bt:KR_LiniaWys"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<element name="KR_Etykieta" type="bt:KR_EtykietaType" substitutionGroup="gml:AbstractObject"/>
+	<complexType name="KR_EtykietaType">
+		<sequence>
+			<element name="tekst" type="string"/>
+			<element name="czcionka" type="bt:KR_KrojPismaPropertyType"/>
+			<element name="geometriaKarto" type="gml:GeometricPrimitivePropertyType" maxOccurs="unbounded"/>
+			<element name="odnosnik" type="bt:KR_OdnosnikPropertyType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="KR_EtykietaTypePropertyType">
+		<sequence>
+			<element ref="bt:KR_Etykieta"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<element name="KR_KrojPisma" type="bt:KR_KrojPismaType" substitutionGroup="gml:AbstractObject"/>
+	<complexType name="KR_KrojPismaType">
+		<sequence>
+			<element name="nazwaCzcionki" type="string"/>
+			<element name="wysCzcionki" type="integer"/>
+			<element name="pogrubiona" type="boolean"/>
+			<element name="kursywa" type="boolean"/>
+			<element name="podkreslona" type="boolean"/>
+			<element name="kolor" type="integer" minOccurs="3" maxOccurs="4"/>
+		</sequence>
+	</complexType>
+	<complexType name="KR_KrojPismaPropertyType">
+		<sequence>
+			<element ref="bt:KR_KrojPisma"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<element name="KR_Odnosnik" type="bt:KR_OdnosnikType" substitutionGroup="gml:AbstractObject"/>
+	<complexType name="KR_OdnosnikType">
+		<sequence>
+			<element name="polozenie" type="gml:PointType" minOccurs="3" maxOccurs="3"/>
+		</sequence>
+	</complexType>
+	<complexType name="KR_OdnosnikPropertyType">
+		<sequence>
+			<element ref="bt:KR_Odnosnik"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<element name="KR_Opis" type="bt:KR_OpisType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="KR_OpisType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="idOpisu" type="string"/>
+					<element name="opis" type="string" minOccurs="0"/>
+					<element name="czcionka" type="bt:KR_KrojPismaPropertyType" minOccurs="0"/>
+					<element name="geometriaKarto" type="gml:GeometricPrimitivePropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="KR_OpisPropertyType">
+		<sequence>
+			<element ref="bt:KR_Opis"/>
+		</sequence>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+	</complexType>
+	<!--======================================-->
+	<simpleType name="KR_RodzajPktuType">
+		<annotation/>
+		<union memberTypes="bt:KR_RodzajPktuEnumerationType bt:KR_RodzajPktuOtherType"/>
+	</simpleType>
+	<simpleType name="KR_RodzajPktuEnumerationType">
+		<restriction base="string">
+			<enumeration value="pikieta"/>
+			<enumeration value="pktOsnowy"/>
+			<enumeration value="rzednaArmatury"/>
+			<enumeration value="inny"/>
+			<enumeration value="rzednaDna"/>
+			<enumeration value="rzednaGory"/>
+			<enumeration value="rzednaDolu"/>
+			<enumeration value="pktWysNaturalny"/>
+			<enumeration value="pktWysSztuczny"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="KR_RodzajPktuOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<!--======================================-->
+	<simpleType name="KR_RodzajLiniiType">
+		<annotation/>
+		<union memberTypes="bt:KR_RodzajLiniiEnumerationType bt:KR_RodzajLiniiOtherType"/>
+	</simpleType>
+	<simpleType name="KR_RodzajLiniiEnumerationType">
+		<restriction base="string">
+			<enumeration value="warstwica"/>
+			<enumeration value="granicaSkarpy"/>
+			<enumeration value="inna"/>
+			<enumeration value="liniaGrzbietu"/>
+			<enumeration value="liniaCieku"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="KR_RodzajLiniiOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+</schema>

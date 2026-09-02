@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:mz="urn:gugik:specyfikacje:gmlas:mapaZasadnicza:1.0" xmlns:bt="urn:gugik:specyfikacje:gmlas:modelPodstawowy:1.0" targetNamespace="urn:gugik:specyfikacje:gmlas:mapaZasadnicza:1.0" elementFormDefault="qualified" version="1.0">
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:gugik:specyfikacje:gmlas:modelPodstawowy:1.0" schemaLocation="BT_ModelPodstawowy.xsd"/>
+	<!-- ============================================================= -->
+	<element name="MZ_OgolnyObiekt" type="mz:MZ_OgolnyObiektType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="MZ_OgolnyObiektType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="PRPOG" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="BDSOG" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="GESUT" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="PRG" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="EGiB" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MZ_OgolnyObiektPropertyType">
+		<sequence minOccurs="0">
+			<element ref="mz:MZ_OgolnyObiekt"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

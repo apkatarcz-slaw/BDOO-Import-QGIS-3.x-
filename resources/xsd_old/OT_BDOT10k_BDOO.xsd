@@ -1,0 +1,3166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ot="urn:gugik:specyfikacje:gmlas:bazaDanychObiektowTopograficznych10k:1.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:bt="urn:gugik:specyfikacje:gmlas:modelPodstawowy:1.0" targetNamespace="urn:gugik:specyfikacje:gmlas:bazaDanychObiektowTopograficznych10k:1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="urn:gugik:specyfikacje:gmlas:modelPodstawowy:1.0" schemaLocation="BT_ModelPodstawowy.xsd"/>
+	<include schemaLocation="OT_BDOT10k_Slowniki.xsd"/>
+	<!-- =========== kartografia =======================================-->
+	<element name="OT_ObiektTopograficzny" type="ot:OT_ObiektTopograficznyType" abstract="true" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OT_ObiektTopograficznyType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="idIIP" type="bt:BT_IdentyfikatorPropertyType"/>
+					<element name="czyObiektBDOO" type="boolean"/>
+					<element name="x_kod" type="string"/>
+					<element name="x_skrKarto" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_SkrKartoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="x_katDoklGeom" type="ot:OT_KatDokladnosciType"/>
+					<element name="x_doklGeom" type="gml:LengthType" minOccurs="0"/>
+					<element name="x_zrodloDanychG" type="ot:OT_ZrodloDanychType"/>
+					<element name="x_zrodloDanychA" type="ot:OT_ZrodloDanychType"/>
+					<element name="x_katIstnienia" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_KatIstnieniaType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="x_rodzajReprGeom" type="ot:OT_RodzajRepGeomType"/>
+					<element name="x_uwagi" type="string" minOccurs="0"/>
+					<element name="x_uzytkownik" type="gmd:CI_ResponsibleParty_PropertyType"/>
+					<element name="x_aktualnoscG" type="date"/>
+					<element name="x_aktualnoscA" type="date"/>
+					<element name="x_cyklZycia" type="bt:BT_CyklZyciaInfoPropertyType"/>
+					<element name="x_dataUtworzenia" type="date"/>
+					<element name="x_informDodatkowa" type="string" minOccurs="0"/>
+					<element name="x_kodKarto10k" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="x_kodKarto25k" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="x_kodKarto50k" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="x_kodKarto100k" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="x_kodKarto250k" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="x_kodKarto500k" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="x_kodKarto1000k" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="obiektKarto" type="bt:KR_ObiektKartoPropertyType" minOccurs="0" maxOccurs="4"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_ObiektTopograficznyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_ObiektTopograficzny"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- =========== sieć wodna ======================================-->
+	<element name="OT_SiecWodna" type="ot:OT_SiecWodnaType" abstract="true" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_SiecWodnaType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="idMPHP" type="string" minOccurs="0"/>
+					<element name="polozenie" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_PolozenieCiekuType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="szerokosc" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+					<!-- Roles -->
+					<element name="ciek1" type="ot:OT_CiekPropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:siecWodna</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SiecWodnaPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SiecWodna"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_SWRS_L" type="ot:OT_SWRS_LType" substitutionGroup="ot:OT_SiecWodna"/>
+	<complexType name="OT_SWRS_LType">
+		<complexContent>
+			<extension base="ot:OT_SiecWodnaType">
+				<sequence>
+					<element name="okresowosc" type="boolean"/>
+					<element name="przebieg" type="ot:OT_PrzebiegCiekuType"/>
+					<element name="rodzaj" type="ot:OT_RodzajRzekiType"/>
+					<element name="statusEksploatacji" type="ot:OT_StatusEksploatacjiType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SWRS_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SWRS_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_SWKN_L" type="ot:OT_SWKN_LType" substitutionGroup="ot:OT_SiecWodna"/>
+	<complexType name="OT_SWKN_LType">
+		<complexContent>
+			<extension base="ot:OT_SiecWodnaType">
+				<sequence>
+					<element name="okresowosc" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="przebieg" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_PrzebiegCiekuType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="statusEksploatacji" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_StatusEksploatacjiType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SWKN_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SWKN_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_SWRM_L" type="ot:OT_SWRM_LType" substitutionGroup="ot:OT_SiecWodna"/>
+	<complexType name="OT_SWRM_LType">
+		<complexContent>
+			<extension base="ot:OT_SiecWodnaType">
+				<sequence>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajRowuMelioracyjnegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SWRM_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SWRM_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_Ciek" type="ot:OT_CiekType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OT_CiekType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="idPRNG" type="string"/>
+					<element name="nazwa" type="string"/>
+					<element name="dlugosc" type="gml:LengthType"/>
+					<!-- Roles -->
+					<element name="siecWodna" type="ot:OT_SiecWodnaPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:ciek1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="ptwp_a2" type="ot:OT_PTWP_APropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:ciek2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="buzm_l1" type="ot:OT_BUZM_LPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:ciek3</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="PRNG" type="bt:BT_ReferencjaDoObiektuPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_CiekPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_Ciek"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- =========== sieć komunikacyjna ================================-->
+	<element name="OT_CharakterystykaDrogi" type="ot:OT_CharakterystykaDrogiType" abstract="true" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_CharakterystykaDrogiType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="katZarzadzania" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_KatZarzadzaniaDrogiType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="klasaDrogi" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_KlasaDrogiType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="materialNawierzchni" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_MaterialNawierzchniType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="nazwaDrogi" type="string" minOccurs="0"/>
+					<element name="liczbaJezdniDrogi" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_CharakterystykaDrogiPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_CharakterystykaDrogi"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_SKTR_L" type="ot:OT_SKTR_LType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_SKTR_LType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="funkcjaToru" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_FunkcjaToruType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="liczbaTorow" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="polozenie" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_PolozenieObiektuSieciTransportowejType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="rodzajPojazduSzynowego" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajPojazduSzynowegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="rodzajTorow" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajToruType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="rodzajTrakcji" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajTrakcjiType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+					<!-- Roles -->
+					<element name="liniaKolejowa" type="ot:OT_LiniaKolejowaPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:sktr_l1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SKTR_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SKTR_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_SKRW_P" type="ot:OT_SKRW_PType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_SKRW_PType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="nrWezlaDrogowego" type="string" minOccurs="0"/>
+					<element name="typWezlaDrogowego" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_TypKrzyzowanDrogType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:PointPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SKRW_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SKRW_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_SKPP_L" type="ot:OT_SKPP_LType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_SKPP_LType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="funTransportowa" type="ot:OT_FunkcjaTransportowaType"/>
+					<element name="rodzaj" type="ot:OT_RodzajPrzeprawyType"/>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SKPP_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SKPP_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_SKRP_L" type="ot:OT_SKRP_LType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_SKRP_LType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="klasaCiaguRuchuPieszego" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_KlasaCiaguRuchuPieszegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="materialNawierzchni" type="ot:OT_MaterialNawierzchniType" minOccurs="0"/>
+					<element name="polozenie" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_PolozenieObiektuSieciTransportowejType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="ruchRowerowy" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RuchRowerowyType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="schody" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="szerokosc" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<!-- Roles -->
+					<element name="ulica2" type="ot:OT_UlicaPropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:skrp_l</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SKRP_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SKRP_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_Ulica" type="ot:OT_UlicaType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OT_UlicaType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="idTerytUlic" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="kodUlicyGm" type="string" minOccurs="0"/>
+					<element name="nazwa1" type="string" minOccurs="0"/>
+					<element name="nazwa2" type="string"/>
+					<element name="przedrostek1" type="string" minOccurs="0"/>
+					<element name="przedrostek2" type="string" minOccurs="0"/>
+					<!-- Roles -->
+					<element name="skjz_l3" type="ot:OT_SKJZ_LPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:ulica3</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="adms_a4" type="ot:OT_ADMS_APropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:ulica1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="skrp_l1" type="ot:OT_SKRP_LPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:ulica2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="ptpl_a" type="ot:OT_PTPL_APropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:ulica5</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="EMUiA" type="bt:BT_ReferencjaDoObiektuPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_UlicaPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_Ulica"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_SKJZ_L" type="ot:OT_SKJZ_LType" substitutionGroup="ot:OT_CharakterystykaDrogi"/>
+	<complexType name="OT_SKJZ_LType">
+		<complexContent>
+			<extension base="ot:OT_CharakterystykaDrogiType">
+				<sequence>
+					<element name="polozenie" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_PolozenieObiektuSieciTransportowejType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="szerNawierzchni" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="szerKoronyDrogi" nillable="true">
+						<complexType>
+							<complexContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="liczbaPasow" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="ulica" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="szlakDrogowy1" type="ot:OT_SzlakDrogowyPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:skjz_l1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="skdr_l1" type="ot:OT_SKDR_LPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:skjz_l2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="ulica3" type="ot:OT_UlicaPropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:skjz_l3</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SKJZ_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SKJZ_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_SKDR_L" type="ot:OT_SKDR_LType" substitutionGroup="ot:OT_CharakterystykaDrogi"/>
+	<complexType name="OT_SKDR_LType">
+		<complexContent>
+			<extension base="ot:OT_CharakterystykaDrogiType">
+				<sequence>
+					<element name="nrOdcinkaReferencyjnego" type="string" minOccurs="0"/>
+					<!-- Roles -->
+					<element name="szlakDrogowy2" type="ot:OT_SzlakDrogowyPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:skdr_l2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="skjz_l2" type="ot:OT_SKJZ_LPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:skdr_l1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SKDR_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SKDR_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_SzlakDrogowy" type="ot:OT_SzlakDrogowyType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OT_SzlakDrogowyType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="numer" type="string"/>
+					<!-- Roles -->
+					<element name="skjz_l1" type="ot:OT_SKJZ_LPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:szlakDrogowy1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="skdr_l2" type="ot:OT_SKDR_LPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:szlakDrogowy2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SzlakDrogowyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SzlakDrogowy"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_LiniaKolejowa" type="ot:OT_LiniaKolejowaType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OT_LiniaKolejowaType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+				    <element name="nrLinii" type="string"/>
+					<!-- Roles -->
+					<element name="sktr_l" type="ot:OT_SKTR_LPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:liniaKolejowa</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="wezelKolejowy1" type="ot:OT_WezelKolejowyPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:poczatekLiniiKolejowej</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="wezelKolejowy2" type="ot:OT_WezelKolejowyPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:koniecLiniiKolejowej</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_LiniaKolejowaPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_LiniaKolejowa"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_WezelKolejowy" type="ot:OT_WezelKolejowyType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OT_WezelKolejowyType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="oznaczenie" type="string"/>
+					<element name="nrWezla" type="string"/>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<!-- Roles -->
+					<element name="poczatekLiniiKolejowej" type="ot:OT_LiniaKolejowaPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:wezelKolejowy1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="koniecLiniiKolejowej" type="ot:OT_LiniaKolejowaPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:wezelKolejowy2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_WezelKolejowyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_WezelKolejowy"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- =========== sieć uzbrojenia terenu ============================== -->
+	<element name="OT_SiecUzbrojeniaTerenu" type="ot:OT_SiecUzbrojeniaTerenuType" abstract="true" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_SiecUzbrojeniaTerenuType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SiecUzbrojeniaTerenuPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SiecUzbrojeniaTerenu"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_SULN_L" type="ot:OT_SULN_LType" substitutionGroup="ot:OT_SiecUzbrojeniaTerenu"/>
+	<complexType name="OT_SULN_LType">
+		<complexContent>
+			<extension base="ot:OT_SiecUzbrojeniaTerenuType">
+				<sequence>
+					<element name="rodzaj" type="ot:OT_RodzajLiniiNapowietrznejType"/>
+					<!-- Roles -->
+					<element name="GESUT" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SULN_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SULN_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_SUPR_L" type="ot:OT_SUPR_LType" substitutionGroup="ot:OT_SiecUzbrojeniaTerenu"/>
+	<complexType name="OT_SUPR_LType">
+		<complexContent>
+			<extension base="ot:OT_SiecUzbrojeniaTerenuType">
+				<sequence>
+					<element name="polozenie" type="ot:OT_PolozenieRurociaguType"/>
+					<element name="srPrzewodu" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajPrzewoduRurowegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="GESUT" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_SUPR_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_SUPR_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- =========== pokrycie terenu =================================== -->
+	<element name="OT_PokrycieTerenu" type="ot:OT_PokrycieTerenuType" abstract="true" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_PokrycieTerenuType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+					<!-- Roles -->
+					<element name="PRNG" type="bt:BT_ReferencjaDoObiektuPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PokrycieTerenuPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PokrycieTerenu"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_PTWP_A" type="ot:OT_PTWP_AType" substitutionGroup="ot:OT_PokrycieTerenu"/>
+	<complexType name="OT_PTWP_AType">
+		<complexContent>
+			<extension base="ot:OT_PokrycieTerenuType">
+				<sequence>
+					<element name="idMPHP" type="string" minOccurs="0"/>
+					<element name="poziomWody" type="double" minOccurs="0"/>
+					<element name="rodzaj" type="ot:OT_RodzajObszaruWodyType"/>
+					<element name="katIstnienia" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_KatIstnieniaType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="zbiornikWodny1" type="ot:OT_ZbiornikWodnyPropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:ptwp_a1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="ciek2" type="ot:OT_CiekPropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:ptwp_a2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PTWP_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PTWP_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_PTLZ_A" type="ot:OT_PTLZ_AType" substitutionGroup="ot:OT_PokrycieTerenu"/>
+	<complexType name="OT_PTLZ_AType">
+		<complexContent>
+			<extension base="ot:OT_PokrycieTerenuType">
+				<sequence>
+					<element name="gatunekDrzew" nillable="true" minOccurs="0" maxOccurs="2">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_GatunekDrzewostanuType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="kategoria" type="ot:OT_KatDrzewostanuType"/>
+					<element name="rodzaj" type="ot:OT_RodzajTerenuLesnegoLubZadrzewionegoType"/>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PTLZ_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PTLZ_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_PTRK_A" type="ot:OT_PTRK_AType" substitutionGroup="ot:OT_PokrycieTerenu"/>
+	<complexType name="OT_PTRK_AType">
+		<complexContent>
+			<extension base="ot:OT_PokrycieTerenuType">
+				<sequence>
+					<element name="rodzaj" type="ot:OT_RodzajTerenuKrzewiastegoType"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PTRK_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PTRK_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_PTTR_A" type="ot:OT_PTTR_AType" substitutionGroup="ot:OT_PokrycieTerenu"/>
+	<complexType name="OT_PTTR_AType">
+		<complexContent>
+			<extension base="ot:OT_PokrycieTerenuType">
+				<sequence>
+					<element name="rodzaj" type="ot:OT_RodzajRoslinnosciTerenuRolnegoType"/>
+					<!-- Roles -->
+					<element name="EGiB" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PTTR_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PTTR_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_PTUT_A" type="ot:OT_PTUT_AType" substitutionGroup="ot:OT_PokrycieTerenu"/>
+	<complexType name="OT_PTUT_AType">
+		<complexContent>
+			<extension base="ot:OT_PokrycieTerenuType">
+				<sequence>
+					<element name="gatunek" nillable="true" minOccurs="0">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_GatunekUprawTrwalychType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="rodzaj" type="ot:OT_RodzajTerenuUprawTrwalychType"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PTUT_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PTUT_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_PTPL_A" type="ot:OT_PTPL_AType" substitutionGroup="ot:OT_PokrycieTerenu"/>
+	<complexType name="OT_PTPL_AType">
+		<complexContent>
+			<extension base="ot:OT_PokrycieTerenuType">
+				<sequence>
+					<element name="materialNawierzchni" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_MaterialNawierzchniType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="ulica5" type="ot:OT_UlicaPropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:ptpl_a</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PTPL_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PTPL_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_PTZB_A" type="ot:OT_PTZB_AType" substitutionGroup="ot:OT_PokrycieTerenu"/>
+	<complexType name="OT_PTZB_AType">
+		<complexContent>
+			<extension base="ot:OT_PokrycieTerenuType">
+				<sequence>
+					<element name="charakter" type="ot:OT_RodzajCharakteruZabudowyType"/>
+					<element name="rodzaj" type="ot:OT_RodzajZabudowyType"/>
+					<element name="roslinnosc" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajRoslinnosciTerenuZabudowyType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PTZB_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PTZB_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_PTKM_A" type="ot:OT_PTKM_AType" substitutionGroup="ot:OT_PokrycieTerenu"/>
+	<complexType name="OT_PTKM_AType">
+		<complexContent>
+			<extension base="ot:OT_PokrycieTerenuType">
+				<sequence>
+					<element name="rodzaj" type="ot:OT_RodzajTerenuKomunikacyjnegoType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PTKM_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PTKM_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_PTGN_A" type="ot:OT_PTGN_AType" substitutionGroup="ot:OT_PokrycieTerenu"/>
+	<complexType name="OT_PTGN_AType">
+		<complexContent>
+			<extension base="ot:OT_PokrycieTerenuType">
+				<sequence>
+					<element name="rodzaj" type="ot:OT_RodzajGruntuNieuzytkowanegoType"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PTGN_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PTGN_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_PTNZ_A" type="ot:OT_PTNZ_AType" substitutionGroup="ot:OT_PokrycieTerenu"/>
+	<complexType name="OT_PTNZ_AType">
+		<complexContent>
+			<extension base="ot:OT_PokrycieTerenuType">
+				<sequence>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajTerenuNiezabudowanegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PTNZ_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PTNZ_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_PTSO_A" type="ot:OT_PTSO_AType" substitutionGroup="ot:OT_PokrycieTerenu"/>
+	<complexType name="OT_PTSO_AType">
+		<complexContent>
+			<extension base="ot:OT_PokrycieTerenuType">
+				<sequence>
+					<element name="rodzaj" type="ot:OT_RodzajTerenuSkladowaniaOdpadowType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PTSO_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PTSO_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_PTWZ_A" type="ot:OT_PTWZ_AType" substitutionGroup="ot:OT_PokrycieTerenu"/>
+	<complexType name="OT_PTWZ_AType">
+		<complexContent>
+			<extension base="ot:OT_PokrycieTerenuType">
+				<sequence>
+					<element name="rodzaj" type="ot:OT_RodzajZwalowiskaWyrobiskaType"/>
+					<element name="surowiec" type="ot:OT_RodzajSurowcaType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PTWZ_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PTWZ_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_ZbiornikWodny" type="ot:OT_ZbiornikWodnyType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OT_ZbiornikWodnyType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="idIIP" type="bt:BT_IdentyfikatorPropertyType"/>
+					<element name="idPRNG" type="string"/>
+					<element name="nazwa" type="string"/>
+					<element name="x_informDodatkowa" type="string" minOccurs="0"/>
+					<element name="x_aktualnoscA" type="date"/>
+					<!-- Roles -->
+					<element name="ptwp_a1" type="ot:OT_PTWP_APropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:zbiornikWodny1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="buzm_l2" type="ot:OT_BUZM_LPropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:zbiornikWodny2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="PRNG" type="bt:BT_ReferencjaDoObiektuPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_ZbiornikWodnyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_ZbiornikWodny"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- =========== budowle i urzšdzenia ============================== -->
+	<element name="OT_BudynkiBudowleIUrzadzenia" type="ot:OT_BudynkiBudowleIUrzadzeniaType" abstract="true" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_BudynkiBudowleIUrzadzeniaType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType"/>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BudynkiBudowleIUrzadzeniaPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BudynkiBudowleIUrzadzenia"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUZM_L" type="ot:OT_BUZM_LType" substitutionGroup="ot:OT_BudynkiBudowleIUrzadzenia"/>
+	<complexType name="OT_BUZM_LType">
+		<complexContent>
+			<extension base="ot:OT_BudynkiBudowleIUrzadzeniaType">
+				<sequence>
+					<element name="material" type="ot:OT_MaterialBudowliZiemnejType" minOccurs="0"/>
+					<element name="rodzaj" type="ot:OT_RodzajBudowliZiemnejType"/>
+					<element name="szerKorony" type="gml:LengthType" minOccurs="0"/>
+					<element name="szerPodstawy" type="gml:LengthType" minOccurs="0"/>
+					<element name="wysokosc" type="double" minOccurs="0"/>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+					<!-- Roles -->
+					<element name="zbiornikWodny2" type="ot:OT_ZbiornikWodnyPropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:buzm_l2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="ciek3" type="ot:OT_CiekPropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:buzm_l1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUZM_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUZM_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUBD_A" type="ot:OT_BUBD_AType" substitutionGroup="ot:OT_BudynkiBudowleIUrzadzenia"/>
+	<complexType name="OT_BUBD_AType">
+		<complexContent>
+			<extension base="ot:OT_BudynkiBudowleIUrzadzeniaType">
+				<sequence>
+					<element name="funOgolnaBudynku" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_FunOgolnaBudynkuType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="funSzczegolowaBudynku" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_FunSzczegolowaBudynkuType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="liczbaKondygnacji" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="kodKst" type="string" minOccurs="0"/>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="zabytek" type="boolean"/>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+					<!-- Roles -->
+					<element name="EGiB" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUBD_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUBD_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUSP" type="ot:OT_BUSPType" abstract="true" substitutionGroup="ot:OT_BudynkiBudowleIUrzadzenia"/>
+	<complexType name="OT_BUSPType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_BudynkiBudowleIUrzadzeniaType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajBudowliSportowejType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUSPPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUSP"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUWT" type="ot:OT_BUWTType" abstract="true" substitutionGroup="ot:OT_BudynkiBudowleIUrzadzenia"/>
+	<complexType name="OT_BUWTType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_BudynkiBudowleIUrzadzeniaType">
+				<sequence>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajBudowliTechnicznejType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="wysokosc" nillable="true" minOccurs="0">
+						<complexType>
+							<simpleContent>
+								<extension base="double">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUWTPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUWT"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUTR" type="ot:OT_BUTRType" abstract="true" substitutionGroup="ot:OT_BudynkiBudowleIUrzadzenia"/>
+	<complexType name="OT_BUTRType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_BudynkiBudowleIUrzadzeniaType">
+				<sequence>
+					<element name="dlugosc" type="gml:LengthType" minOccurs="0"/>
+					<element name="rodzaj" type="ot:OT_RodzajUrzadzeniaTransportowegoType"/>
+					<element name="szerokosc" type="gml:LengthType" minOccurs="0"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUTRPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUTR"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUZT" type="ot:OT_BUZTType" abstract="true" substitutionGroup="ot:OT_BudynkiBudowleIUrzadzenia"/>
+	<complexType name="OT_BUZTType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_BudynkiBudowleIUrzadzeniaType">
+				<sequence>
+					<element name="gromadzonaSubstancja" nillable="true" minOccurs="0">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_GromadzonaSubstancjaType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="rodzajKonstrukcji" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajKonstrukcjiZbiornikaType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajZbiornikaTechnicznegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUZTPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUZT"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUHD" type="ot:OT_BUHDType" abstract="true" substitutionGroup="ot:OT_BudynkiBudowleIUrzadzenia"/>
+	<complexType name="OT_BUHDType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_BudynkiBudowleIUrzadzeniaType">
+				<sequence>
+					<element name="poziomWodyMaksymalny" type="double" minOccurs="0"/>
+					<element name="poziomWodyMinimalny" type="double" minOccurs="0"/>
+					<element name="rodzaj" type="ot:OT_RodzajBudowliHydrotechnicznejType"/>
+					<element name="wysokoscKoronyZapory" type="double" minOccurs="0"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUHDPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUHD"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUIB" type="ot:OT_BUIBType" abstract="true" substitutionGroup="ot:OT_BudynkiBudowleIUrzadzenia"/>
+	<complexType name="OT_BUIBType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_BudynkiBudowleIUrzadzeniaType">
+				<sequence>
+					<element name="rodzaj" type="ot:OT_RodzajInnejBudowliType"/>
+					<!-- Roles -->
+					<element name="EGiB" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUIBPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUIB"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUIT" type="ot:OT_BUITType" abstract="true" substitutionGroup="ot:OT_BudynkiBudowleIUrzadzenia"/>
+	<complexType name="OT_BUITType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_BudynkiBudowleIUrzadzeniaType">
+				<sequence>
+					<element name="rodzaj" type="ot:OT_RodzajUrzadzeniaTechnicznegoType"/>
+					<!-- Roles -->
+					<element name="GESUT" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUITPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUIT"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUIN_L" type="ot:OT_BUIN_LType" substitutionGroup="ot:OT_BudynkiBudowleIUrzadzenia"/>
+	<complexType name="OT_BUIN_LType">
+		<complexContent>
+			<extension base="ot:OT_BudynkiBudowleIUrzadzeniaType">
+				<sequence>
+					<element name="dlugosc" type="gml:LengthType" minOccurs="0"/>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+					<element name="konstrukcja" type="ot:OT_KonstrukcjaBudowliInzynierskiejType" minOccurs="0"/>
+					<element name="liczbaPoziomow" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_LiczbaPoziomowType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="materialKonstrukcyjnyPodpor" type="ot:OT_MaterialKonstrukcyjnyBudowliInzynierskiejType" minOccurs="0"/>
+					<element name="materialKonstrukcyjnyPomostu" type="ot:OT_MaterialKonstrukcyjnyBudowliInzynierskiejType" minOccurs="0"/>
+					<element name="mobilnoscPrzesla" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="nosnosc" type="double" minOccurs="0"/>
+					<element name="nrEwidencyjnyZarzaduDrog" type="string" minOccurs="0"/>
+					<element name="rodzaj" type="ot:OT_RodzajBudowliInzynierskiejType"/>
+					<element name="rodzajKomunikacji" type="ot:OT_RodzajKomunikacjiType"/>
+					<element name="szerokosc" type="gml:LengthType" minOccurs="0"/>
+					<element name="wysokosc" type="double" minOccurs="0"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUIN_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUIN_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUUO_L" type="ot:OT_BUUO_LType" substitutionGroup="ot:OT_BudynkiBudowleIUrzadzenia"/>
+	<complexType name="OT_BUUO_LType">
+		<complexContent>
+			<extension base="ot:OT_BudynkiBudowleIUrzadzeniaType">
+				<sequence>
+					<element name="rodzaj" type="ot:OT_RodzajUmocnieniaType"/>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+					<element name="material" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_MaterialUmocnieniaType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="wysokosc" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="double">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUUO_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUUO_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUCM_A" type="ot:OT_BUCM_AType" substitutionGroup="ot:OT_BudynkiBudowleIUrzadzenia"/>
+	<complexType name="OT_BUCM_AType">
+		<complexContent>
+			<extension base="ot:OT_BudynkiBudowleIUrzadzeniaType">
+				<sequence>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+					<element name="rodzaj" type="ot:OT_RodzajCmentarzaType"/>
+					<element name="wyznanie" type="ot:OT_WyznanieType"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUCM_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUCM_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUSP_A" type="ot:OT_BUSP_AType" substitutionGroup="ot:OT_BUSP"/>
+	<complexType name="OT_BUSP_AType">
+		<complexContent>
+			<extension base="ot:OT_BUSPType">
+				<sequence>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUSP_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUSP_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUSP_L" type="ot:OT_BUSP_LType" substitutionGroup="ot:OT_BUSP"/>
+	<complexType name="OT_BUSP_LType">
+		<complexContent>
+			<extension base="ot:OT_BUSPType">
+				<sequence>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUSP_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUSP_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUWT_A" type="ot:OT_BUWT_AType" substitutionGroup="ot:OT_BUWT"/>
+	<complexType name="OT_BUWT_AType">
+		<complexContent>
+			<extension base="ot:OT_BUWTType">
+				<sequence>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUWT_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUWT_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUWT_P" type="ot:OT_BUWT_PType" substitutionGroup="ot:OT_BUWT"/>
+	<complexType name="OT_BUWT_PType">
+		<complexContent>
+			<extension base="ot:OT_BUWTType">
+				<sequence>
+					<element name="geometria" type="gml:PointPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUWT_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUWT_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUTR_L" type="ot:OT_BUTR_LType" substitutionGroup="ot:OT_BUTR"/>
+	<complexType name="OT_BUTR_LType">
+		<complexContent>
+			<extension base="ot:OT_BUTRType">
+				<sequence>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUTR_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUTR_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUTR_P" type="ot:OT_BUTR_PType" substitutionGroup="ot:OT_BUTR"/>
+	<complexType name="OT_BUTR_PType">
+		<complexContent>
+			<extension base="ot:OT_BUTRType">
+				<sequence>
+					<element name="geometria" type="gml:PointPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUTR_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUTR_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUZT_A" type="ot:OT_BUZT_AType" substitutionGroup="ot:OT_BUZT"/>
+	<complexType name="OT_BUZT_AType">
+		<complexContent>
+			<extension base="ot:OT_BUZTType">
+				<sequence>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUZT_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUZT_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUZT_P" type="ot:OT_BUZT_PType" substitutionGroup="ot:OT_BUZT"/>
+	<complexType name="OT_BUZT_PType">
+		<complexContent>
+			<extension base="ot:OT_BUZTType">
+				<sequence>
+					<element name="geometria" type="gml:PointPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUZT_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUZT_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUHD_A" type="ot:OT_BUHD_AType" substitutionGroup="ot:OT_BUHD"/>
+	<complexType name="OT_BUHD_AType">
+		<complexContent>
+			<extension base="ot:OT_BUHDType">
+				<sequence>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUHD_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUHD_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUHD_L" type="ot:OT_BUHD_LType" substitutionGroup="ot:OT_BUHD"/>
+	<complexType name="OT_BUHD_LType">
+		<complexContent>
+			<extension base="ot:OT_BUHDType">
+				<sequence>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUHD_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUHD_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUHD_P" type="ot:OT_BUHD_PType" substitutionGroup="ot:OT_BUHD"/>
+	<complexType name="OT_BUHD_PType">
+		<complexContent>
+			<extension base="ot:OT_BUHDType">
+				<sequence>
+					<element name="geometria" type="gml:PointPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUHD_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUHD_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUIB_A" type="ot:OT_BUIB_AType" substitutionGroup="ot:OT_BUIB"/>
+	<complexType name="OT_BUIB_AType">
+		<complexContent>
+			<extension base="ot:OT_BUIBType">
+				<sequence>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUIB_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUIB_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUIB_L" type="ot:OT_BUIB_LType" substitutionGroup="ot:OT_BUIB"/>
+	<complexType name="OT_BUIB_LType">
+		<complexContent>
+			<extension base="ot:OT_BUIBType">
+				<sequence>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUIB_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUIB_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUIT_A" type="ot:OT_BUIT_AType" substitutionGroup="ot:OT_BUIT"/>
+	<complexType name="OT_BUIT_AType">
+		<complexContent>
+			<extension base="ot:OT_BUITType">
+				<sequence>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUIT_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUIT_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_BUIT_P" type="ot:OT_BUIT_PType" substitutionGroup="ot:OT_BUIT"/>
+	<complexType name="OT_BUIT_PType">
+		<complexContent>
+			<extension base="ot:OT_BUITType">
+				<sequence>
+					<element name="geometria" type="gml:PointPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_BUIT_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_BUIT_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- =========== kompleksy użytkowania terenu ======================= -->
+	<element name="OT_KUPG_P" type="ot:OT_KUPG_PType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUPG_PType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="geometria" type="gml:PointPropertyType"/>
+					<!-- Roles -->
+					<element name="kupg_a1" type="ot:OT_KUPG_APropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:kupg_p</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUPG_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUPG_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUPG_A" type="ot:OT_KUPG_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUPG_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajKompleksuPrzemyslowoGospodarczegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+					<!-- Roles -->
+					<element name="kupg_p" type="ot:OT_KUPG_PPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:kupg_a1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="elektrownia" type="ot:OT_ElektrowniaPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:kupg_a2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="kopalnia" type="ot:OT_KopalniaPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:kupg_a3</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUPG_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUPG_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUKO_A" type="ot:OT_KUKO_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUKO_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajKompleksuKomunikacyjnegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<!-- Roles -->
+					<element name="kuko_p" type="ot:OT_KUKO_PPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:kuko_a1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="port" type="ot:OT_PortPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:kuko_a2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="lotnisko" type="ot:OT_LotniskoPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:kuko_a3</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUKO_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUKO_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUKO_P" type="ot:OT_KUKO_PType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUKO_PType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="geometria2" type="gml:PointPropertyType"/>
+					<!-- Roles -->
+					<element name="kuko_a1" type="ot:OT_KUKO_APropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:kuko_p</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUKO_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUKO_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUHO_A" type="ot:OT_KUHO_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUHO_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajKompleksuUslugHotelarskichType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUHO_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUHO_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUHU_P" type="ot:OT_KUHU_PType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUHU_PType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="geometria" type="gml:PointPropertyType"/>
+					<!-- Roles -->
+					<element name="kuhu_a" type="ot:OT_KUHU_APropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:kuhu_p</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUHU_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUHU_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUHU_A" type="ot:OT_KUHU_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUHU_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajKompleksuHandlowoUslugowegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+					<!-- Roles -->
+					<element name="kuhu_p" type="ot:OT_KUHU_PPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:kuhu_a</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUHU_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUHU_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUOZ_A" type="ot:OT_KUOZ_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUOZ_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajKompleksuOchronyZdrowiaType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUOZ_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUOZ_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUMN_A" type="ot:OT_KUMN_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUMN_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" type="ot:OT_RodzajKompleksuMieszkaniowegoType"/>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUMN_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUMN_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUSC_A" type="ot:OT_KUSC_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUSC_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" type="ot:OT_RodzajKompleksuSakralnegoType"/>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUSC_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUSC_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUOS_A" type="ot:OT_KUOS_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUOS_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajKompleksuOswiatowegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUOS_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUOS_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUSK_A" type="ot:OT_KUSK_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUSK_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajKompleksuSportowoRekreacyjnegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUSK_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUSK_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUZA_A" type="ot:OT_KUZA_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUZA_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajKompleksuZabytkowoHistorycznegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUZA_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUZA_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_KUIK_A" type="ot:OT_KUIK_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_KUIK_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajInnegoKompleksuType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KUIK_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_KUIK_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_Elektrownia" type="ot:OT_ElektrowniaType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OT_ElektrowniaType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="rodzaj" type="ot:OT_RodzajElektrowniType"/>
+					<!-- Roles -->
+					<element name="kupg_a2" type="ot:OT_KUPG_APropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:elektrownia</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_ElektrowniaPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_Elektrownia"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_Kopalnia" type="ot:OT_KopalniaType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OT_KopalniaType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="kopalina" type="ot:OT_KopalinaType"/>
+					<element name="rodzaj" type="ot:OT_RodzajKopalniType"/>
+					<!-- Roles -->
+					<element name="kupg_a3" type="ot:OT_KUPG_APropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:kopalnia</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_KopalniaPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_Kopalnia"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_Port" type="ot:OT_PortType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OT_PortType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="lokalizacjaPortu" type="ot:OT_LokalizacjaPortuType"/>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" type="ot:OT_RodzajPortuType"/>
+					<!-- Roles -->
+					<element name="kuko_a2" type="ot:OT_KUKO_APropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:port</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PortPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_Port"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_Lotnisko" type="ot:OT_LotniskoType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OT_LotniskoType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="idIata" type="string"/>
+					<element name="idIcao" type="string"/>
+					<element name="rodzaj" type="ot:OT_RodzajLotniskaType"/>
+					<!-- Roles -->
+					<element name="kuko_a3" type="ot:OT_KUKO_APropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:lotnisko</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_LotniskoPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_Lotnisko"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- =========== tereny chronione ================================== -->
+	<element name="OT_TerenyChronione" type="ot:OT_TerenyChronioneType" abstract="true" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_TerenyChronioneType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+					<element name="idKSOCH" type="string" minOccurs="0"/>
+					<!-- Roles -->
+					<element name="PRNG" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_TerenyChronionePropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_TerenyChronione"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_TCRZ_A" type="ot:OT_TCRZ_AType" substitutionGroup="ot:OT_TerenyChronione"/>
+	<complexType name="OT_TCRZ_AType">
+		<complexContent>
+			<extension base="ot:OT_TerenyChronioneType">
+				<sequence>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajRezerwatuType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="nazwa" type="string" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_TCRZ_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_TCRZ_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_TCPN_A" type="ot:OT_TCPN_AType" substitutionGroup="ot:OT_TerenyChronione"/>
+	<complexType name="OT_TCPN_AType">
+		<complexContent>
+			<extension base="ot:OT_TerenyChronioneType">
+				<sequence>
+					<element name="nazwa" type="string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_TCPN_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_TCPN_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_TCON_A" type="ot:OT_TCON_AType" substitutionGroup="ot:OT_TerenyChronione"/>
+	<complexType name="OT_TCON_AType">
+		<complexContent>
+			<extension base="ot:OT_TerenyChronioneType">
+				<sequence>
+					<element name="idNatura" type="string"/>
+					<element name="nazwa" type="string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_TCON_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_TCON_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_TCPK_A" type="ot:OT_TCPK_AType" substitutionGroup="ot:OT_TerenyChronione"/>
+	<complexType name="OT_TCPK_AType">
+		<complexContent>
+			<extension base="ot:OT_TerenyChronioneType">
+				<sequence>
+					<element name="nazwa" type="string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_TCPK_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_TCPK_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- =========== jednostki podziału terytorialnego ======================-->
+	<element name="OT_PodzialTerytorialny" type="ot:OT_PodzialTerytorialnyType" abstract="true" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_PodzialTerytorialnyType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string"/>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_PodzialTerytorialnyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_PodzialTerytorialny"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_ADMS_A" type="ot:OT_ADMS_AType" substitutionGroup="ot:OT_PodzialTerytorialny"/>
+	<complexType name="OT_ADMS_AType">
+		<complexContent>
+			<extension base="ot:OT_PodzialTerytorialnyType">
+				<sequence>
+					<element name="idPRNG" type="string"/>
+					<element name="idTerytGmi" type="string"/>
+					<element name="idTerytMiejsc" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="liczbaMieszkancow" type="integer" minOccurs="0"/>
+					<element name="rodzaj" type="ot:OT_RodzajMiejscowosciType"/>
+					<element name="siedzibaUrzeduGminy" type="boolean"/>
+					<!-- Roles -->
+					<element name="adms_a1" type="ot:OT_ADMS_APropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:adms_a2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="adms_a2" type="ot:OT_ADMS_APropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:adms_a1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="ulica1" type="ot:OT_UlicaPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:adms_a4</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="adja_a3" type="ot:OT_ADJA_APropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:adms_a3</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="EMUiA" type="bt:BT_ReferencjaDoObiektuPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="PRNG" type="bt:BT_ReferencjaDoObiektuPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_ADMS_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_ADMS_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_ADJA_A" type="ot:OT_ADJA_AType" substitutionGroup="ot:OT_PodzialTerytorialny"/>
+	<complexType name="OT_ADJA_AType">
+		<complexContent>
+			<extension base="ot:OT_PodzialTerytorialnyType">
+				<sequence>
+					<element name="idPRG" type="string"/>
+					<element name="idTerytJednostkiNadrzednej" type="string" minOccurs="0"/>
+					<element name="idTerytTerc" type="string"/>
+					<element name="rodzaj" type="ot:OT_RodzajJednostkiAdministracyjnejType"/>
+					<!-- Roles -->
+					<element name="adja_a1" type="ot:OT_ADJA_APropertyType" minOccurs="0">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:adja_a2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="adja_a2" type="ot:OT_ADJA_APropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:adja_a1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="adms_a3" type="ot:OT_ADMS_APropertyType" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>ot:adja_a3</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="PRG" type="bt:BT_ReferencjaDoObiektuPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_ADJA_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_ADJA_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_ADMS_P" type="ot:OT_ADMS_PType" substitutionGroup="ot:OT_ADMS_A"/>
+	<complexType name="OT_ADMS_PType">
+		<complexContent>
+			<extension base="ot:OT_ADMS_AType">
+				<sequence>
+					<element name="geometria2" type="gml:PointPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_ADMS_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_ADMS_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- =========== obiekty inne ======================================-->
+	<element name="OT_OIPR" type="ot:OT_OIPRType" abstract="true" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_OIPRType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="pomnikPrzyrody" type="boolean"/>
+					<element name="rodzaj" type="ot:OT_RodzajObiektuPrzyrodniczegoType"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OIPRPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OIPR"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_OIKM" type="ot:OT_OIKMType" abstract="true" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_OIKMType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="ot:OT_RodzajObiektuKomunikacyjnegoType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OIKMPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OIKM"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_OIOR" type="ot:OT_OIORType" abstract="true" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_OIORType" abstract="true">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="nazwa" type="string" minOccurs="0"/>
+					<element name="rodzaj" type="ot:OT_RodzajObiektuOrientacyjnegoType"/>
+					<element name="szerokosc" type="gml:LengthType" minOccurs="0"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OIORPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OIOR"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_OIMK_A" type="ot:OT_OIMK_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_OIMK_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="rodzaj" type="ot:OT_RodzajMokradlaType"/>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OIMK_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OIMK_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_OISZ_A" type="ot:OT_OISZ_AType" substitutionGroup="ot:OT_ObiektTopograficzny"/>
+	<complexType name="OT_OISZ_AType">
+		<complexContent>
+			<extension base="ot:OT_ObiektTopograficznyType">
+				<sequence>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+					<!-- Roles -->
+					<element name="BDOT500" type="bt:BT_ReferencjaDoObiektuPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:targetElement>bt:BT_ReferencjaDoObiektu</gml:targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OISZ_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OISZ_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_OIPR_L" type="ot:OT_OIPR_LType" substitutionGroup="ot:OT_OIPR"/>
+	<complexType name="OT_OIPR_LType">
+		<complexContent>
+			<extension base="ot:OT_OIPRType">
+				<sequence>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OIPR_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OIPR_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_OIPR_P" type="ot:OT_OIPR_PType" substitutionGroup="ot:OT_OIPR"/>
+	<complexType name="OT_OIPR_PType">
+		<complexContent>
+			<extension base="ot:OT_OIPRType">
+				<sequence>
+					<element name="geometria" type="gml:PointPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OIPR_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OIPR_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_OIKM_A" type="ot:OT_OIKM_AType" substitutionGroup="ot:OT_OIKM"/>
+	<complexType name="OT_OIKM_AType">
+		<complexContent>
+			<extension base="ot:OT_OIKMType">
+				<sequence>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OIKM_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OIKM_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_OIKM_L" type="ot:OT_OIKM_LType" substitutionGroup="ot:OT_OIKM"/>
+	<complexType name="OT_OIKM_LType">
+		<complexContent>
+			<extension base="ot:OT_OIKMType">
+				<sequence>
+					<element name="geometria" type="gml:CurvePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OIKM_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OIKM_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_OIKM_P" type="ot:OT_OIKM_PType" substitutionGroup="ot:OT_OIKM"/>
+	<complexType name="OT_OIKM_PType">
+		<complexContent>
+			<extension base="ot:OT_OIKMType">
+				<sequence>
+					<element name="geometria" type="gml:PointPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OIKM_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OIKM_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_OIOR_A" type="ot:OT_OIOR_AType" substitutionGroup="ot:OT_OIOR"/>
+	<complexType name="OT_OIOR_AType">
+		<complexContent>
+			<extension base="ot:OT_OIORType">
+				<sequence>
+					<element name="geometria" type="gml:SurfacePropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OIOR_APropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OIOR_A"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_OIOR_L" type="ot:OT_OIOR_LType" substitutionGroup="ot:OT_OIOR"/>
+	<complexType name="OT_OIOR_LType">
+		<complexContent>
+			<extension base="ot:OT_OIORType">
+				<sequence>
+					<element name="geometria" type="gml:CurveType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OIOR_LPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OIOR_L"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OT_OIOR_P" type="ot:OT_OIOR_PType" substitutionGroup="ot:OT_OIOR"/>
+	<complexType name="OT_OIOR_PType">
+		<complexContent>
+			<extension base="ot:OT_OIORType">
+				<sequence>
+					<element name="geometria" type="gml:PointPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OT_OIOR_PPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ot:OT_OIOR_P"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

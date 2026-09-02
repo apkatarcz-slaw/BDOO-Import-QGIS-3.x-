@@ -1,0 +1,18 @@
+Import BDOT10k - wtyczka QGIS
+Copyright (C) 2026
+
+Ten program jest wolnym oprogramowaniem: mozesz go rozpowszechniac
+i/lub modyfikowac zgodnie z warunkami Powszechnej Licencji Publicznej
+GNU (GNU General Public License) wersja 3 lub (wedlug wyboru) dowolna
+pozniejsza wersja, opublikowanej przez Free Software Foundation.
+
+Ten program jest rozpowszechniany w nadziei, ze bedzie uzyteczny, ale
+BEZ JAKIEJKOLWIEK GWARANCJI, nawet bez domniemanej gwarancji PRZYDATNOSCI
+HANDLOWEJ lub PRZYDATNOSCI DO OKRESLONEGO CELU. Wiecej informacji
+w Powszechnej Licencji Publicznej GNU.
+
+Pelny tekst licencji (GNU GPL v3) dostepny jest pod adresem:
+https://www.gnu.org/licenses/gpl-3.0.txt
+
+Wymog repozytorium wtyczek QGIS: licencja musi byc kompatybilna z GPL -
+GPL-3.0-or-later spelnia ten wymog.
