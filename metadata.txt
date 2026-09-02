@@ -10,8 +10,9 @@ email=apka.tarcz@gmail.com
 about=Instrukcja: w katalogu wejsciowym mają być pliki *.zip, katalog w srodku musi miec strukturę PL.PZGiK.201.02 (okresla wojewodztwo). Podpowiedzi pojawiają się po najechaniu na dany element interfejsu.
       Wtyczka importuje pliki BDOO (paczki .zip z danymi GML, wojewodztwo po wojewodztwie, zgodnymi ze schematem BDOT10k_BDOO.xsd) dla jednego lub wielu wojewodztw, scala warstwy tego samego typu w jedna wspolna tabele, automatycznie dostosowuje szerokosc pol tekstowych do najdluzszej wystepujacej wartosci, pozwala pominac obiekty z zamknietym cyklem zycia (pole koniecWersjiObiektu) i eksportuje wynik do dowolnej kombinacji formatow: GeoPackage, GeoParquet, GML, ESRI File Geodatabase (.gdb) i SQLite/SpatiaLite. Wymagane schematy XSD sa wbudowane we wtyczke - uzytkownik nie musi ich samodzielnie dostarczac. Kazdy plik zrodlowy jest raz konwertowany do lekkiego formatu posredniego (z cache na dysku) - kolejne importy tych samych danych sa znaczaco szybsze. Ta wersja jest przeznaczona wylacznie dla QGIS 3.x (PyQt5) - dla QGIS 4.x zainstaluj osobna wtyczke "Import BDOO (QGIS 4.x)".
       
-tracker=https://github.com/user/bdoo-import-qgis/issues
-repository=https://github.com/user/bdoo-import-qgis
+repository=https://github.com/apkatarcz-slaw/BDOO-Import-QGIS-3.x-
+tracker=https://github.com/apkatarcz-slaw/BDOO-Import-QGIS-3.x-/issues
+homepage=https://github.com/apkatarcz-slaw/BDOO-Import-QGIS-3.x-
 category=Vector
 
 changelog=1.0.0 (2026-09-03)
@@ -19,7 +20,6 @@ changelog=1.0.0 (2026-09-03)
 
 tags=BDOO,BDOT10k,GML,import,SQLite,GeoPackage,GeoParquet,batch,Poland,PZGiK,cache,wojewodztwo,QGIS3
 
-https://github.com/apkatarcz-slaw/BDOO-Import-QGIS-3.x-/issues
 icon=resources/icon.png
 experimental=False
 deprecated=False
